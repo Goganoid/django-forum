@@ -128,7 +128,7 @@ background-color: #63cbe9;
     color:red;
 }
 .error{
-    display: inline;
+    /*display: inline;*/
 }
 .info{
     display: flex;
