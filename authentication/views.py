@@ -9,21 +9,7 @@ User = get_user_model()
 # Create your views here.
 def register(request,*args,**kwargs):
     if request.method=='POST':
-        username_exists = User.objects.filter(username=request.POST.get('username')).exists()
-        mail_exists = User.objects.filter(email=request.POST.get('email')).exists()
-        passwords_match = request.POST.get('password1')==request.POST.get('password2')
-        if username_exists or mail_exists or not passwords_match:
             form = RegisterForm(request.POST, request.FILES)
-            print(form.errors)
-            return JsonResponse({
-                'status':1,
-                'error_data':{
-                    'username_exists':username_exists,
-                    'email_exists':mail_exists,
-                    'passwords_match':passwords_match
-                 }
-            })
-        else:
             print("POST",request.POST)
             print("Files",request.FILES)
             form = RegisterForm(request.POST,request.FILES)
@@ -35,18 +21,13 @@ def register(request,*args,**kwargs):
                 login(request, user)
                 return JsonResponse({
                     'status':0,
-                    'data':{
-                        'redirect_url':request.build_absolute_uri('/')
-                    }
+                    'redirect_url':request.build_absolute_uri('/')
                 })
             else:
                 return JsonResponse({
                     'status': 1,
-                    'error_data': {
-                        'errors_list':form.errors
-                    }
+                    'errors_list':form.errors
                 })
-
     else:
         context = {'form': RegisterForm()}
         return render(request,'registration/register.html',context)

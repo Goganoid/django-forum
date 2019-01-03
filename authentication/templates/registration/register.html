@@ -26,13 +26,14 @@
                    console.log(data)
                    $('.errors').html('');
                    if (data.status == '1') {
-                       if (data.error_data.username_exists) show_error("Current Username Exists!");
-                       if (data.error_data.email_exists) show_error("Current Email is Taken!");
-                       if (!data.error_data.passwords_match) show_error("Passwords didn't match");
-                       if(data.error_data.errors_list) show_error(data.error_data.errors_list)
+                       $('.error').remove()
+                        Object.keys(data.errors_list).forEach(function (key) {
+                            $('#id_'+key).after('');
+                            $('#id_'+key).after(` <p class='error'>${data.errors_list[key][0]}</p>`)
+                        });
                    }
 
-                   else if (data.status == '0') window.location.href = data.data.redirect_url
+                   else if (data.status == '0') window.location.href = data.redirect_url
                }
            });
            return false;
