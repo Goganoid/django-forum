@@ -1,0 +1,10 @@
+<div class="last_themes radius">
+            <div class="name asideblock"><p>NEW FORUM POSTS</p></div>
+           {% for topic in last_topics %}
+            <div class="lastpost border">
+                   <p class="last_post_name"><a href="{% url 'topic' topic.id %}"> {{ topic.theme }} </a></p>
+                    <p>by <span>{{ topic.creator }}</span></p>
+                    <p> {{ topic.time_created }}</p>
+            </div>
+           {% endfor %}
+        </div>

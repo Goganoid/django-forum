@@ -1,0 +1,60 @@
+{% extends 'sections/base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/static/sections/css/createanswer.css">
+{% endblock %}
+{% block main-content %}
+<form action="{% url 'createtopic' pk %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+   <div class="suggestions">
+    </div>
+{#    <input type="submit" value="Submit">#}
+ <button type="submit" > Send</button>
+</form>
+
+{% endblock %}
+{% block javascript %}
+    <script>
+        let tags = {{ tags | safe }};
+        $('#id_tags').on('input',function(){
+            $('.suggestions').html('');
+            let text = $(this).val();
+            let inputTags = text.replace(/ /g,'').split(',');
+            let lastTag = inputTags[inputTags.length - 1];
+            if(lastTag!="") {
+                for (let tagIndex in tags) {
+                    if (tags[tagIndex].indexOf(lastTag) != -1) {
+                        console.log(tags[tagIndex])
+                        $('.suggestions').append(`<p>${tags[tagIndex]}</p>`)
+                        $('.suggestions p').on('click',function(){
+                            inputTags[inputTags.length - 1] = this.innerHTML;
+                            $('#id_tags').val(inputTags.toString())
+                        });
+                    }
+                }
+            }
+        });
+        $('form').on('submit',function (e) {
+           $.ajax({
+                data:$(this).serialize(),
+                type:$(this).attr('method'),
+                url:$(this).attr('action'),
+                success:function (data) {
+                    console.log(data);
+                    if(data.errors_list) {
+                        Object.keys(data.errors_list).forEach(function (key) {
+                            $('#id_'+key).after('');
+                            $('#id_'+key).after(` <p class='error'>${data.errors_list[key][0]}</p>`)
+                        });
+                        $('form').append(data.errors_list)
+                    }
+                    else if(data.redirect_url) window.location.href=data.redirect_url
+                }
+           });
+         return false // to prevent form redirect
+        });
+        function show_error(message) {
+            $('.errors').append(`<p>${message}</p>`);
+        }
+    </script>
+{% endblock %}

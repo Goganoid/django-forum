@@ -1,0 +1,52 @@
+{% extends 'sections/base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/static/sections/css/topic.css" type="text/css">
+{% endblock %}
+{% block main-content %}
+
+    <div class="main">
+        <div class="messages">
+        {% ifnotequal topic.message_set.all.count 0 %}
+            {% for message  in topic.message_set.all %}
+                <div class="message">
+                    <p class="creator"><b>{{ message.creator }}</b> <span class="date">{{ message.get_time_created }}</span></p>
+                    <p class="message_text">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+        <p>No messages</p>
+        {% endifnotequal %}
+        </div>
+        <p><b>Your Answer</b></p>
+        <hr>
+        <form  method="post" action="{% url 'topic' topic.id %}" id="form">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit"  id="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script>
+
+        $('#form').submit(function () {
+            $.ajax({ // create an AJAX call...
+                data:$(this).serialize() , // get the form data
+                type: $(this).attr('method'), // GET or POST
+                url: $(this).attr('action'), // the file to call
+                success: function(response) { // on success..
+                    console.log(response)
+                    $('.messages').append(`
+                    <div class="message">
+                        <p class="creator"><b>${ response.creator }</b> <span class="date">${ response.time_created}</span></p>
+                        <p class="message_text">${ response.message }</p>
+                    </div>`
+                    )
+                    $('#message-text').val('')
+                }
+            });
+            return false;
+        });
+
+    </script>
+{% endblock %}

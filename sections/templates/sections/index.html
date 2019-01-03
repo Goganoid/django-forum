@@ -1,0 +1,42 @@
+{% extends  'sections/base.html' %}
+{% block header %}
+<div class="welcome">
+{% include 'sections/menu.html' %}
+<p>WELCOME TO FORUM</p>
+</div>
+{% endblock %}
+{% block main-content %}
+{% if forums %}
+    <div class="content main">
+        <div class="forums radius">
+            {% for forum in forums %}
+                <div class="forum radius">
+                <div class="name forumname">
+                    <p>{{ forum }}</p>
+                </div>
+                    <div class="table border">
+                        <div class="row_info">Forum</div>
+                        <div class="row_info">Topics</div>
+                        <div class="row_info">Messages</div>
+                        {% for subforum in forum.subforum_set.all %}
+                            <div class="subforum_info"><a href="/subforum/{{ subforum.id }}">{{ subforum }}</a></div>
+                            <div class="subforum_info">{{ subforum.topic_set.count }}</div>
+                            <div class="subforum_info"> {{ subforum.total_messages }} </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="last_themes radius">
+            <div class="name asideblock"><p>NEW FORUM POSTS</p></div>
+           {% for topic in last_topics %}
+            <div class="lastpost border">
+                   <p class="last_post_name"><a href="{% url 'topic' topic.id %}"> {{ topic.theme }} </a></p>
+                    <p>by <span>{{ topic.creator }}</span></p>
+                    <p> {{ topic.time_created }}</p>
+            </div>
+           {% endfor %}
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

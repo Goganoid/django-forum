@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    {% if forms.errors %}
+        <p>You got an error</p>
+    {% endif %}
+
+    {% if next %}
+        <p>You can't access this page</p>
+    {% endif %}
+
+    <form action="{% url 'auth:login' %}" method="post">
+        {% csrf_token %}
+       <p>Name: {{ form.username }}</p>
+        <p>Password: {{ form.password }}</p>
+        <p><input type="submit"  value="Login"></p>
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+<p><a href="{% url 'auth:password_reset' %}">Lost password?</a></p>
+</body>
+</html>

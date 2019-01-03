@@ -1,0 +1,14 @@
+{% extends 'sections/base.html' %}
+{% block main-content %}
+<p>Username: {{ user }}</p>
+<p><img src="/media/{{ user.profile_image }}" ></img></p>
+<p>Full name: {{ user.get_full_name}}</p>
+<p>Email: {{ user.email }}</p>
+<p>Date joined: {{ user.date_joined }}</p>
+    {% if user.about %}
+    <p>About: {{ user.about }}</p>
+    {% else %}
+        <p>About: User didn't write about himself</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{#{% block menu %}#}
+    <div class="menu">
+    <span><a href="{% url 'index' %}">Home</a></span>
+{#    <span> Wednesday, August 17, 2018</span>#}
+    <ul>
+        <li>FAQ</li>
+         {% if user.is_authenticated %}
+           <li> <a href="{% url 'auth:userpage' user.id %}">{{ user }}</a></li>
+           <li>
+                <a href="{% url 'auth:logout' %}">Exit</a>
+           </li>
+        {% else %}
+             <li><a href="{% url 'auth:login' %}">Login</a> or <a href="{% url 'auth:register' %}">Register</a></li>
+
+
+        {% endif %}
+    </ul>
+</div>
+{#{% endblock %}#}

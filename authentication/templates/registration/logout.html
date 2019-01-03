@@ -1,0 +1,5 @@
+{% extends 'sections/base.html' %}
+{% block main-content %}
+<p>You have logged out</p>
+<p><a href="{% url 'auth:login' %}">Login again</a></p>
+{% endblock %}

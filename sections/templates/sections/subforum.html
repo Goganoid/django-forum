@@ -1,0 +1,25 @@
+{% extends 'sections/base.html' %}
+
+{% block main-content %}
+<div class="info">
+<p><a href="{% url 'index' %}"/>Forum</a> > {{ subforum }}</p>
+<p><a href="{% url 'createtopic' subforum.id %}">Create Answer</a></p>
+</div>
+
+<div class="main">
+{% ifnotequal subforum.topic_set.all.count  0 %}
+    <div class="table border">
+        <div class="row_info">Theme</div>
+        <div class="row_info">Views</div>
+        <div class="row_info">Messages</div>
+        {% for topic in subforum.topic_set.all %}
+            <div class="subforum_info"><a href="{% url 'topic' topic.id %}">{{ topic }}</a></div>
+            <div class="subforum_info">{{ topic.views }}</div>
+            <div class="subforum_info">{{ topic.message_set.count }}</div>
+        {% endfor %}
+    </div>
+{% else %}
+<p>No Topics :(</p>
+{% endifnotequal %}
+</div>
+{% endblock %}

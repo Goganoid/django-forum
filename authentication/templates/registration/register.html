@@ -1,0 +1,46 @@
+{% extends 'sections/base.html' %}
+{% block  main-content %}
+    <form action="{% url 'auth:register' %}" method="post" id="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if form.errors  %}
+            <p>{{ form.errors}}</p>
+        {% endif %}
+        {{ form.as_p }}
+        <div class="errors"></div>
+        <button type="submit" > Register</button>
+    </form>
+{% endblock %}
+{% block javascript %}
+    <script>
+        $('button').on('click',function(e) {
+           e.preventDefault();
+            let form = $('form')
+           let data = new FormData($('form').get(0));
+           $.ajax({
+               data: data,
+               processData: false,
+               contentType: false,
+               type: form.attr('method'),
+               url: form.attr('action'),
+               success: function (data) {
+                   console.log(data)
+                   $('.errors').html('');
+                   if (data.status == '1') {
+                       if (data.error_data.username_exists) show_error("Current Username Exists!");
+                       if (data.error_data.email_exists) show_error("Current Email is Taken!");
+                       if (!data.error_data.passwords_match) show_error("Passwords didn't match");
+                       if(data.error_data.errors_list) show_error(data.error_data.errors_list)
+                   }
+
+                   else if (data.status == '0') window.location.href = data.data.redirect_url
+               }
+           });
+           return false;
+        });
+
+        function show_error(message) {
+            $('.errors').append(`<p>${message}</p>`);
+        }
+
+    </script>
+{% endblock  %}
