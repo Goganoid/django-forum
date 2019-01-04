@@ -1,11 +1,11 @@
 from django import forms
 from .models import Message,Topic,Tag
+from tinymce.widgets import TinyMCE
 class MessageForm(forms.Form):
-    message = forms.CharField(label="",widget=forms.Textarea(attrs={
-        'id':'message-text'
-    }))
+    message = forms.CharField(label="",widget=TinyMCE(attrs={'id':'mce'}))
 class CreateTopicForm(forms.ModelForm):
-    message =  forms.CharField(label="", required=True, widget=forms.Textarea())
+    # message =  forms.CharField(label="", required=True, widget=forms.Textarea())
+    message =  forms.CharField(label="", required=True, widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
     tags = forms.CharField(required=True)
     class Meta:
         model = Topic

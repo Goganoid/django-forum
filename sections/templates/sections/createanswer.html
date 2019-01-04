@@ -1,6 +1,7 @@
 {% extends 'sections/base.html' %}
 {% block head %}
     <link rel="stylesheet" href="/static/sections/css/createanswer.css">
+    {{ form.media }}
 {% endblock %}
 {% block main-content %}
 <form action="{% url 'createtopic' pk %}" method="post">

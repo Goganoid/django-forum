@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +125,72 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/loggedout'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTH_USER_MODEL = 'authentication.User'
+# TINYMCE_DEFAULT_CONFIG = {
+#     'height': 360,
+#     'width': 1120,
+#     'cleanup_on_startup': True,
+#     'custom_undo_redo_levels': 20,
+#     'selector': 'textarea',
+#     'theme': 'modern',
+#     'plugins': '''
+#             textcolor save link image media preview codesample contextmenu
+#             table code lists fullscreen  insertdatetime  nonbreaking
+#             contextmenu directionality searchreplace wordcount visualblocks
+#             visualchars code fullscreen autolink lists  charmap print  hr
+#             anchor pagebreak
+#             ''',
+#     'toolbar1': '''
+#             fullscreen preview bold italic underline | fontselect,
+#             fontsizeselect  | forecolor backcolor | alignleft alignright |
+#             aligncenter alignjustify | indent outdent | bullist numlist table |
+#             | link image media | codesample |
+#             ''',
+#     'toolbar2': '''
+#             visualblocks visualchars |
+#             charmap hr pagebreak nonbreaking anchor |  code |
+#             ''',
+#     'contextmenu': 'formats | link image',
+#     'menubar': True,
+#     'statusbar': True,
+# }
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 360,
+    # 'width': 1120,
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
+    'theme': 'modern',
+    'plugins': '''
+            textcolor  link image media preview codesample contextmenu
+            table code lists   insertdatetime  nonbreaking
+            contextmenu directionality searchreplace wordcount visualblocks
+            visualchars code fullscreen autolink lists  charmap print  hr
+            anchor pagebreak
+            ''',
+    'toolbar1': '''
+             preview bold italic underline    | alignleft alignright |
+            aligncenter alignjustify | indent outdent | bullist numlist  |
+            | link image media | codesample |
+            ''',
+    # 'toolbar2': '''
+    #         visualblocks visualchars |
+    #         charmap hr pagebreak nonbreaking anchor |  code |
+    #         ''',
+    'contextmenu': 'formats | link image',
+    'menubar': False,
+    'statusbar': True,
+    'codesample_languages': [
+                    {'text': 'HTML/XML', 'value': 'markup'},
+                    {'text': 'JavaScript', 'value': 'javascript'},
+                    {'text': 'CSS', 'value': 'css'},
+                    {'text': 'PHP', 'value': 'php'},
+                    {'text': 'Ruby', 'value': 'ruby'},
+                    {'text': 'Python', 'value': 'python'},
+                    {'text': 'Json', 'value': 'json' },
+                    {'text': 'SQL', 'value': 'sql' },
+                    {'text': 'Java', 'value': 'java'},
+                    {'text': 'C', 'value': 'c'},
+                    {'text': 'C#', 'value': 'csharp'},
+                    {'text': 'C++', 'value': 'cpp'}
+                ],
+    }

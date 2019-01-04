@@ -6,7 +6,7 @@ body{
 }
 .main{
 width: 80%;
-    margin: auto;
+margin: auto;
 }
 
 .content{
@@ -135,3 +135,6 @@ background-color: #63cbe9;
     justify-content: space-between;
     padding: 0 30px;
 }
+/*.mce-tinymce{*/
+    /*width: 100% !important;*/
+/*}*/

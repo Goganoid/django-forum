@@ -1,6 +1,9 @@
 {% extends 'sections/base.html' %}
 {% block head %}
     <link rel="stylesheet" href="/static/sections/css/topic.css" type="text/css">
+    <link rel="stylesheet" href="/static/sections/css/prism.css" type="text/css">
+    <script src="/static/sections/js/prism.js"></script>
+    {{ form.media }}
 {% endblock %}
 {% block main-content %}
 
@@ -10,7 +13,7 @@
             {% for message  in topic.message_set.all %}
                 <div class="message">
                     <p class="creator"><b>{{ message.creator }}</b> <span class="date">{{ message.get_time_created }}</span></p>
-                    <p class="message_text">{{ message }}</p>
+                    <div class="message_text">{{ message.text|safe  }}</div>
                 </div>
             {% endfor %}
         {% else %}
@@ -25,6 +28,7 @@
             <button type="submit"  id="submit">Submit</button>
         </form>
     </div>
+
 {% endblock %}
 {% block javascript %}
     <script>
@@ -47,6 +51,5 @@
             });
             return false;
         });
-
     </script>
 {% endblock %}
