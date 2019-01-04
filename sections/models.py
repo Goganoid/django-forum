@@ -48,9 +48,7 @@ class Topic(models.Model):
 class Message(models.Model):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE,default='')
-    # subforum=  models.ForeignKey(SubForum,on_delete=models.CASCADE,default=topic)
     text = models.TextField()
-    # text = HTMLField()
     time_created = models.DateTimeField(auto_now_add=True, blank=True)
     def get_time_created(self):
         return self.time_created.strftime('%b. %d, %Y, %I:%M %p')

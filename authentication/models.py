@@ -2,11 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 def content_file_name(instance, filename):
-    # print('profiles/'+instance.user.id+filename.split('.')[1])
-    print(instance)
     return 'profiles/'+instance.username+'.' + filename.split('.')[1]
-
-
 class User(AbstractUser):
     last_activity = models.DateTimeField(null=True)
     about = models.CharField(max_length=400,default="",blank=True)

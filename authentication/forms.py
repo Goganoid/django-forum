@@ -11,9 +11,7 @@ class RegisterForm(UserCreationForm):
         }
 
     def save(self,commit=True):
-        # print(self.cleaned_data)
         user = super(RegisterForm,self).save(commit=False)
-        # user.profile_image = self.cleaned_data['profile_image']
         user.set_password(self.cleaned_data['password1'])
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
