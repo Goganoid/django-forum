@@ -12,7 +12,7 @@
         <div class="row_info">Theme</div>
         <div class="row_info">Views</div>
         <div class="row_info">Messages</div>
-        {% for topic in subforum.topic_set.all %}
+        {% for topic in subforum.topic_set.all|dictsortreversed:"time_created" %}
             <div class="subforum_info"><a href="{% url 'topic' topic.id %}">{{ topic }}</a></div>
             <div class="subforum_info">{{ topic.views }}</div>
             <div class="subforum_info">{{ topic.message_set.count }}</div>

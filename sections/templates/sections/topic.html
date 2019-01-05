@@ -32,7 +32,6 @@
 {% endblock %}
 {% block javascript %}
     <script>
-
         $('#form').submit(function () {
             $.ajax({ // create an AJAX call...
                 data:$(this).serialize() , // get the form data
@@ -46,7 +45,8 @@
                         <p class="message_text">${ response.message }</p>
                     </div>`
                     )
-                    $('#message-text').val('')
+                    tinyMCE.activeEditor.setContent('')
+                    Prism.highlightAll()
                 }
             });
             return false;

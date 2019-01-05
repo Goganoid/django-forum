@@ -127,11 +127,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTH_USER_MODEL = 'authentication.User'
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
-    # 'width': 1120,
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',
     'theme': 'modern',
+    'cleanup' : True,
     'plugins': '''
             textcolor  link image media preview codesample contextmenu
             table code lists   insertdatetime  nonbreaking
