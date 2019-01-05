@@ -9,7 +9,6 @@ class SubForumInline(admin.TabularInline):
 class MessageInline(admin.StackedInline):
     model = Message
     fields = ('creator','text')
-    readonly_fields = fields
     extra = 0
 class TopicInlineTag(admin.TabularInline):
     model = Topic.tags.through

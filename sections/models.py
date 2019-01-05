@@ -2,10 +2,6 @@ from django.db import models
 from tinymce.models import HTMLField
 from django.conf import settings
 # Create your models here.
-# class settings.AUTH_USER_MODEL(Abstractsettings.AUTH_USER_MODEL):
-#     registration_date = models.DateTimeField()
-#     last_activity = models.DateTimeField()
-#     about = models.CharField(max_length=400)
 
 
 class Forum(models.Model):
