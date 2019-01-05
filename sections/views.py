@@ -4,7 +4,6 @@ from django.shortcuts import get_object_or_404,render,reverse
 from .models import Forum,SubForum,Topic,Message,Tag
 from .forms import MessageForm, CreateTopicForm
 from django.core import serializers
-# import datetime
 class IndexView(View):
     template_name = 'sections/index.html'
     context_object_name = 'forums'
@@ -17,8 +16,6 @@ class SubForumView(generic.DetailView):
     template_name = 'sections/subforum.html'
     context_object_name = 'subforum'
     model = SubForum
-    def get_queryset(self):
-        return SubForum.objects.order_by('name')
 class TopicView(View):
     template_name = 'sections/topic.html'
     model = Topic
@@ -77,9 +74,6 @@ class CreateTopicView(View):
             return JsonResponse({
                 'redirect_url': reverse('topic',args=(topic.id,))
             })
-            # return HttpResponseRedirect(reverse('topic',args=(topic.id,)))
-
-
         else:
             print(form.errors)
             return JsonResponse({
