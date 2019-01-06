@@ -1,0 +1,10 @@
+.suggestions{
+    height: 60px;
+    background-color: #d2d2d2;
+}
+.suggestions > p{
+    text-decoration: underline;
+}
+.suggestions > p:hover{
+    text-decoration: none;
+}

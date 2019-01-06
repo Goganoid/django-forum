@@ -1,0 +1,17 @@
+.message_text{
+    margin-left: 20px;
+}
+.date{
+    display: inline-block;
+    font-size: 80%;
+    margin-left: 20px;
+}
+.name{
+    font-weight: bold;
+}
+.messages{
+    background-color: #ffffff;
+}
+#message-text{
+    width: 100%;
+}
