@@ -1,5 +1,5 @@
 .suggestions{
-    height: 60px;
+    height: auto;
     background-color: #d2d2d2;
 }
 .suggestions > p{
