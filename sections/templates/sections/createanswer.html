@@ -14,7 +14,7 @@
  <button type="submit" > Send</button>
 </form>
 {% else %}
-   <p> Login or Register,please</p>
+    {% include 'sections/please_login.html' %}
 {% endif %}
 {% endblock %}
 {% block javascript %}

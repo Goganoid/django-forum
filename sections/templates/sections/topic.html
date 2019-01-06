@@ -28,14 +28,7 @@
             {{ form }}
             <button type="submit"  id="submit">Submit</button>
         </form>
-     {% else %}
-       <p> Login or Register,please</p>
-    {% endif %}
-
-    </div>
-
-{% endblock %}
-{% block javascript %}
+        {% block javascript %}
     <script>
         $('#form').submit(function () {
             $.ajax({ // create an AJAX call...
@@ -58,3 +51,11 @@
         });
     </script>
 {% endblock %}
+     {% else %}
+         {% include 'sections/please_login.html' %}
+    {% endif %}
+
+    </div>
+
+{% endblock %}
+
