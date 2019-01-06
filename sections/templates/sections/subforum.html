@@ -3,7 +3,10 @@
 {% block main-content %}
 <div class="info">
 <p><a href="{% url 'index' %}"/>Forum</a> > {{ subforum }}</p>
+{% if user.is_authenticated  %}
 <p><a href="{% url 'createtopic' subforum.id %}">Create Answer</a></p>
+{% endif %}
+
 </div>
 
 <div class="main">

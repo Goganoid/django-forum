@@ -4,15 +4,18 @@
     {{ form.media }}
 {% endblock %}
 {% block main-content %}
+{% if user.is_authenticated %}
+
 <form action="{% url 'createtopic' pk %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
    <div class="suggestions">
     </div>
-{#    <input type="submit" value="Submit">#}
  <button type="submit" > Send</button>
 </form>
-
+{% else %}
+   <p> Login or Register,please</p>
+{% endif %}
 {% endblock %}
 {% block javascript %}
     <script>

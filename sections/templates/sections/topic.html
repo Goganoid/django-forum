@@ -22,11 +22,16 @@
         </div>
         <p><b>Your Answer</b></p>
         <hr>
-        <form  method="post" action="{% url 'topic' topic.id %}" id="form">
+    {% if user.is_authenticated %}
+     <form  method="post" action="{% url 'topic' topic.id %}" id="form">
             {% csrf_token %}
             {{ form }}
             <button type="submit"  id="submit">Submit</button>
         </form>
+     {% else %}
+       <p> Login or Register,please</p>
+    {% endif %}
+
     </div>
 
 {% endblock %}
