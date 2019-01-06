@@ -1,7 +1,5 @@
-{#{% block menu %}#}
     <div class="menu">
     <span><a href="{% url 'index' %}">Home</a></span>
-{#    <span> Wednesday, August 17, 2018</span>#}
     <ul>
         <li>FAQ</li>
          {% if user.is_authenticated %}
@@ -16,4 +14,3 @@
         {% endif %}
     </ul>
 </div>
-{#{% endblock %}#}
