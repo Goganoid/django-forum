@@ -12,9 +12,6 @@ class CreateTopicForm(forms.ModelForm):
         fields =('theme',)
 
     def get_tags(self):
-        print(self.cleaned_data['tags'].replace(' ', ''))
-        print(self.cleaned_data['tags'])
-        print(self.cleaned_data['tags'].replace(' ', '').split(','))
         return [Tag.objects.get(name=i) for i in self.cleaned_data['tags'].replace(' ', '').split(',')]
 
     def clean(self):

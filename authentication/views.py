@@ -9,9 +9,6 @@ User = get_user_model()
 # Create your views here.
 def register(request,*args,**kwargs):
     if request.method=='POST':
-            form = RegisterForm(request.POST, request.FILES)
-            print("POST",request.POST)
-            print("Files",request.FILES)
             form = RegisterForm(request.POST,request.FILES)
             if form.is_valid():
                 username = form.cleaned_data["username"]

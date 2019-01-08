@@ -37,7 +37,6 @@ class Topic(models.Model):
     def __str__(self):
         return self.theme
     def getSubForum(self):
-        print(self.subforum)
         return self.subforum
 
 
