@@ -4,7 +4,6 @@
     {{ form.media }}
 {% endblock %}
 {% block main-content %}
-{% if user.is_authenticated %}
 
 <form action="{% url 'createtopic' pk %}" method="post">
     {% csrf_token %}
@@ -15,7 +14,6 @@
 </form>
 {% else %}
     {% include 'sections/please_login.html' %}
-{% endif %}
 {% endblock %}
 {% block javascript %}
     <script>
