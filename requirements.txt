@@ -1,2 +1,2 @@
-Django==2.1.4
+Django~>2.1.4
 django-tinymce==2.7.0
